@@ -1,0 +1,595 @@
+<div class="row hidden-xs">
+  <div class="col-xs-3 col-sm-6 col-md-3">
+    <div class="summary-box">
+      <div class="title"><p>POWER GENERATED</p></div>
+      <div class="value">
+        <p>
+          <span bind="powerGenerated">{{ data.data[1].powerGenerated }}</span>
+          MW
+        </p>
+      </div>
+      <div class="value-level">
+        <p>
+          <span id="powerGeneratedLow" class="levelRange">LOW </span
+          ><span id="powerGeneratedAvg" class="levelRange levelActivated"
+            >AVG </span
+          ><span id="powerGeneratedHigh" class="levelRange">HIGH </span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-3 col-sm-6 col-md-3">
+    <div class="summary-box">
+      <div class="title"><p>ONTARIO DEMAND</p></div>
+      <div class="value">
+        <p>
+          <span bind="ontarioDemand">{{ data.data[1].ontarioDemand }}</span>
+          MW
+        </p>
+      </div>
+      <div class="value-level">
+        <p>
+          <span id="ontarioDemandLow" class="levelRange">LOW</span>
+          <span id="ontarioDemandAvg" class="levelRange levelActivated"
+            >AVG</span
+          >
+          <span id="ontarioDemandHigh" class="levelRange">HIGH</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-3 col-sm-6 col-md-3">
+    <div class="summary-box">
+      <div class="title"><p>TOTAL EMISSIONS</p></div>
+      <div class="value">
+        <p>
+          <span bind="totalCo2e">{{ data.data[1].totalCo2e }}</span>
+          tonnes
+        </p>
+      </div>
+      <div class="value-level">
+        <p>
+          <span id="totalCo2eLow" class="levelRange levelActivated">LOW </span
+          ><span id="totalCo2eAvg" class="levelRange">AVG </span
+          ><span id="totalCo2eHigh" class="levelRange">HIGH</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-3 col-sm-6 col-md-3">
+    <div class="summary-box">
+      <div class="title"><p>CO2e INTENSITY</p></div>
+      <div class="value">
+        <p>
+          <span bind="co2eIntensity">{{ data.data[1].co2eIntensity }}</span>
+          g/kWh
+        </p>
+      </div>
+      <div class="value-level">
+        <p>
+          <span id="co2eIntensityLow" class="levelRange">LOW</span>
+          <span id="co2eIntensityAvg" class="levelRange levelActivated"
+            >AVG</span
+          >
+          <span id="co2eIntensityHigh" class="levelRange">HIGH</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="fuel-content">
+  <div class="col-md-6 col-sm-6">
+    <div class="block">
+      <div class="breakdown-table-title">
+        GENERATION - FUEL TYPE ({{ data.data[0].date }})
+      </div>
+      <table class="energy-source-breakdown-table">
+        <tbody>
+          <tr
+            energytype="NUCLEAR"
+            class="energy-source-breakdown-standard-cell"
+          >
+            <td class="energy-source-icon">
+              <img
+                src="./assets/icon-webapp-fuelsource-sm-nuclear@2x.png?v1"
+                data-rjs="3"
+                alt="Nuclear"
+                data-rjs-processed="true"
+                width="30"
+                height="30"
+              />
+            </td>
+            <td class="energy-source-title">nuclear</td>
+            <td class="energy-source-values">
+              <div class="bar-background">
+                <div
+                  class="bar"
+                  id="nuclear-bar"
+                  style="width: {{ data.data[0].nuclearPercentage }}%"
+                ></div>
+              </div>
+              <div style="float: left">
+                <span bind="nuclearPercentage">{{
+                  data.data[0].nuclearPercentage
+                }}</span
+                >%
+              </div>
+              <div style="float: right">
+                <span bind="nuclearOutput">{{
+                  data.data[0].nuclearOutput
+                }}</span>
+                MW
+              </div>
+            </td>
+          </tr>
+          <tr energytype="GAS" class="energy-source-breakdown-standard-cell">
+            <td class="energy-source-icon">
+              <img
+                src="./assets/icon-webapp-fuelsource-sm-gas@2x.png?v1"
+                data-rjs="3"
+                alt="Gas"
+                data-rjs-processed="true"
+                width="30"
+                height="30"
+              />
+            </td>
+            <td class="energy-source-title">gas</td>
+            <td class="energy-source-values">
+              <div class="bar-background">
+                <div
+                  class="bar"
+                  id="gas-bar"
+                  style="width: {{ data.data[0].gasPercentage }}%"
+                ></div>
+              </div>
+              <div style="float: left">
+                <span bind="gasPercentage">{{
+                  data.data[0].gasPercentage
+                }}</span
+                >%
+              </div>
+              <div style="float: right">
+                <span bind="gasOutput">{{ data.data[0].gasOutput }}</span>
+                MW
+              </div>
+            </td>
+          </tr>
+          <tr energytype="HYDRO" class="energy-source-breakdown-standard-cell">
+            <td class="energy-source-icon">
+              <img
+                src="./assets/icon-webapp-fuelsource-sm-hydro@2x.png?v1"
+                data-rjs="3"
+                alt="Hydro"
+                data-rjs-processed="true"
+                width="30"
+                height="30"
+              />
+            </td>
+            <td class="energy-source-title">hydro</td>
+            <td class="energy-source-values">
+              <div class="bar-background">
+                <div
+                  class="bar"
+                  id="hydro-bar"
+                  style="width: {{ data.data[0].hydroPercentage }}%"
+                ></div>
+              </div>
+              <div style="float: left">
+                <span bind="hydroPercentage">{{
+                  data.data[0].hydroPercentage
+                }}</span
+                >%
+              </div>
+              <div style="float: right">
+                <span bind="hydroOutput">{{ data.data[0].hydroOutput }}</span>
+                MW
+              </div>
+            </td>
+          </tr>
+          <tr energytype="WIND" class="energy-source-breakdown-standard-cell">
+            <td class="energy-source-icon">
+              <img
+                src="./assets/icon-webapp-fuelsource-sm-wind@2x.png?v1"
+                data-rjs="3"
+                alt="Wind"
+                data-rjs-processed="true"
+                width="30"
+                height="30"
+              />
+            </td>
+            <td class="energy-source-title">wind</td>
+            <td class="energy-source-values">
+              <div class="bar-background">
+                <div
+                  class="bar"
+                  id="wind-bar"
+                  style="width: {{ data.data[0].windPercentage }}%"
+                ></div>
+              </div>
+              <div style="float: left">
+                <span bind="windPercentage">{{
+                  data.data[0].windPercentage
+                }}</span
+                >%
+              </div>
+              <div style="float: right">
+                <span bind="windOutput">{{ data.data[0].windOutput }}</span>
+                MW
+              </div>
+            </td>
+          </tr>
+          <tr energytype="SOLAR" class="energy-source-breakdown-standard-cell">
+            <td class="energy-source-icon">
+              <img
+                src="./assets/icon-webapp-fuelsource-sm-solar@2x.png?v1"
+                data-rjs="3"
+                alt="Solar"
+                data-rjs-processed="true"
+                width="30"
+                height="30"
+              />
+            </td>
+            <td class="energy-source-title">solar</td>
+            <td class="energy-source-values">
+              <div class="bar-background">
+                <div
+                  class="bar"
+                  id="solar-bar"
+                  style="width: {{ data.data[0].solarPercentage }}%"
+                ></div>
+              </div>
+              <div style="float: left">
+                <span bind="solarPercentage">{{
+                  data.data[0].solarPercentage
+                }}</span
+                >%
+              </div>
+              <div style="float: right">
+                <span bind="solarOutput">{{ data.data[0].solarOutput }}</span>
+                MW
+              </div>
+            </td>
+          </tr>
+          <tr
+            energytype="BIOFUEL"
+            class="energy-source-breakdown-standard-cell"
+          >
+            <td class="energy-source-icon">
+              <img
+                src="./assets/icon-webapp-fuelsource-sm-biofuel@2x.png?v1"
+                data-rjs="3"
+                alt="Biofuel"
+                data-rjs-processed="true"
+                width="30"
+                height="30"
+              />
+            </td>
+            <td class="energy-source-title">biofuel</td>
+            <td class="energy-source-values">
+              <div class="bar-background">
+                <div
+                  class="bar"
+                  id="biofuel-bar"
+                  style="width: {{ data.data[0].biofuelPercentage }}%"
+                ></div>
+              </div>
+              <div style="float: left">
+                <span bind="biofuelPercentage">{{
+                  data.data[0].biofuelPercentage
+                }}</span
+                >%
+              </div>
+              <div style="float: right">
+                <span bind="biofuelOutput">{{
+                  data.data[0].biofuelOutput
+                }}</span>
+                MW
+              </div>
+            </td>
+          </tr>
+
+          <tr class="energy-source-breakdown-import-export-cell">
+            <td colspan="2">
+              <img
+                class="import-export-icon"
+                src="./assets/icon-webapp-ontario-export.png?v2"
+                data-rjs="3"
+                alt="import"
+                style="
+                  height: 70px;
+                  width: 70px;
+                  margin-top: 3px;
+                  margin-bottom: 2px;
+                  margin-left: auto;
+                  margin-right: auto;
+                  display: block;
+                "
+                data-rjs-processed="true"
+                width="70"
+                height="70"
+              />
+            </td>
+            <td>
+              <div style="display: inline">import</div>
+              <div class="imports">
+                <span bind="imports">{{ data.data[0].imports }}</span>
+                MW
+              </div>
+              <br />
+              <div style="display: inline">export</div>
+              <div class="exports">
+                <span bind="exports">{{ data.data[0].exports }}</span>
+                MW
+              </div>
+              <br />
+              <div style="display: inline">net</div>
+              <div class="netImportExports" style="color: rgb(70, 88, 101)">
+                <span bind="netImportExports">{{
+                  data.data[0].netImportExports
+                }}</span>
+                MW
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-6 col-sm-6">
+    <div class="block">
+      <div class="breakdown-table-title">
+        GENERATION - FUEL TYPE ({{ data.data[1].date }})
+      </div>
+      <table class="energy-source-breakdown-table">
+        <tbody>
+          <tr
+            energytype="NUCLEAR"
+            class="energy-source-breakdown-standard-cell"
+          >
+            <td class="energy-source-icon">
+              <img
+                src="./assets/icon-webapp-fuelsource-sm-nuclear@2x.png?v1"
+                data-rjs="3"
+                alt="Nuclear"
+                data-rjs-processed="true"
+                width="30"
+                height="30"
+              />
+            </td>
+            <td class="energy-source-title">nuclear</td>
+            <td class="energy-source-values">
+              <div class="bar-background">
+                <div
+                  class="bar"
+                  id="nuclear-bar"
+                  style="width: {{ data.data[1].nuclearPercentage }}%"
+                ></div>
+              </div>
+              <div style="float: left">
+                <span bind="nuclearPercentage">{{
+                  data.data[1].nuclearPercentage
+                }}</span
+                >%
+              </div>
+              <div style="float: right">
+                <span bind="nuclearOutput">{{
+                  data.data[1].nuclearOutput
+                }}</span>
+                MW
+              </div>
+            </td>
+          </tr>
+          <tr energytype="GAS" class="energy-source-breakdown-standard-cell">
+            <td class="energy-source-icon">
+              <img
+                src="./assets/icon-webapp-fuelsource-sm-gas@2x.png?v1"
+                data-rjs="3"
+                alt="Gas"
+                data-rjs-processed="true"
+                width="30"
+                height="30"
+              />
+            </td>
+            <td class="energy-source-title">gas</td>
+            <td class="energy-source-values">
+              <div class="bar-background">
+                <div
+                  class="bar"
+                  id="gas-bar"
+                  style="width: {{ data.data[1].gasPercentage }}%"
+                ></div>
+              </div>
+              <div style="float: left">
+                <span bind="gasPercentage">{{
+                  data.data[1].gasPercentage
+                }}</span
+                >%
+              </div>
+              <div style="float: right">
+                <span bind="gasOutput">{{ data.data[1].gasOutput }}</span>
+                MW
+              </div>
+            </td>
+          </tr>
+          <tr energytype="HYDRO" class="energy-source-breakdown-standard-cell">
+            <td class="energy-source-icon">
+              <img
+                src="./assets/icon-webapp-fuelsource-sm-hydro@2x.png?v1"
+                data-rjs="3"
+                alt="Hydro"
+                data-rjs-processed="true"
+                width="30"
+                height="30"
+              />
+            </td>
+            <td class="energy-source-title">hydro</td>
+            <td class="energy-source-values">
+              <div class="bar-background">
+                <div
+                  class="bar"
+                  id="hydro-bar"
+                  style="width: {{ data.data[1].hydroPercentage }}%"
+                ></div>
+              </div>
+              <div style="float: left">
+                <span bind="hydroPercentage">{{
+                  data.data[1].hydroPercentage
+                }}</span
+                >%
+              </div>
+              <div style="float: right">
+                <span bind="hydroOutput">{{ data.data[1].hydroOutput }}</span>
+                MW
+              </div>
+            </td>
+          </tr>
+          <tr energytype="WIND" class="energy-source-breakdown-standard-cell">
+            <td class="energy-source-icon">
+              <img
+                src="./assets/icon-webapp-fuelsource-sm-wind@2x.png?v1"
+                data-rjs="3"
+                alt="Wind"
+                data-rjs-processed="true"
+                width="30"
+                height="30"
+              />
+            </td>
+            <td class="energy-source-title">wind</td>
+            <td class="energy-source-values">
+              <div class="bar-background">
+                <div
+                  class="bar"
+                  id="wind-bar"
+                  style="width: {{ data.data[1].windPercentage }}%"
+                ></div>
+              </div>
+              <div style="float: left">
+                <span bind="windPercentage">{{
+                  data.data[1].windPercentage
+                }}</span
+                >%
+              </div>
+              <div style="float: right">
+                <span bind="windOutput">{{ data.data[1].windOutput }}</span>
+                MW
+              </div>
+            </td>
+          </tr>
+          <tr energytype="SOLAR" class="energy-source-breakdown-standard-cell">
+            <td class="energy-source-icon">
+              <img
+                src="./assets/icon-webapp-fuelsource-sm-solar@2x.png?v1"
+                data-rjs="3"
+                alt="Solar"
+                data-rjs-processed="true"
+                width="30"
+                height="30"
+              />
+            </td>
+            <td class="energy-source-title">solar</td>
+            <td class="energy-source-values">
+              <div class="bar-background">
+                <div
+                  class="bar"
+                  id="solar-bar"
+                  style="width: {{ data.data[1].solarPercentage }}%"
+                ></div>
+              </div>
+              <div style="float: left">
+                <span bind="solarPercentage">{{
+                  data.data[1].solarPercentage
+                }}</span
+                >%
+              </div>
+              <div style="float: right">
+                <span bind="solarOutput">{{ data.data[1].solarOutput }}</span>
+                MW
+              </div>
+            </td>
+          </tr>
+          <tr
+            energytype="BIOFUEL"
+            class="energy-source-breakdown-standard-cell"
+          >
+            <td class="energy-source-icon">
+              <img
+                src="./assets/icon-webapp-fuelsource-sm-biofuel@2x.png?v1"
+                data-rjs="3"
+                alt="Biofuel"
+                data-rjs-processed="true"
+                width="30"
+                height="30"
+              />
+            </td>
+            <td class="energy-source-title">biofuel</td>
+            <td class="energy-source-values">
+              <div class="bar-background">
+                <div
+                  class="bar"
+                  id="biofuel-bar"
+                  style="width: {{ data.data[1].biofuelPercentage }}%"
+                ></div>
+              </div>
+              <div style="float: left">
+                <span bind="biofuelPercentage">{{
+                  data.data[1].biofuelPercentage
+                }}</span
+                >%
+              </div>
+              <div style="float: right">
+                <span bind="biofuelOutput">{{
+                  data.data[1].biofuelOutput
+                }}</span>
+                MW
+              </div>
+            </td>
+          </tr>
+
+          <tr class="energy-source-breakdown-import-export-cell">
+            <td colspan="2">
+              <img
+                class="import-export-icon"
+                src="./assets/icon-webapp-ontario-export.png?v2"
+                data-rjs="3"
+                alt="import"
+                style="
+                  height: 70px;
+                  width: 70px;
+                  margin-top: 3px;
+                  margin-bottom: 2px;
+                  margin-left: auto;
+                  margin-right: auto;
+                  display: block;
+                "
+                data-rjs-processed="true"
+                width="70"
+                height="70"
+              />
+            </td>
+            <td>
+              <div style="display: inline">import</div>
+              <div class="imports">
+                <span bind="imports">{{ data.data[1].imports }}</span>
+                MW
+              </div>
+              <br />
+              <div style="display: inline">export</div>
+              <div class="exports">
+                <span bind="exports">{{ data.data[1].exports }}</span>
+                MW
+              </div>
+              <br />
+              <div style="display: inline">net</div>
+              <div class="netImportExports" style="color: rgb(70, 88, 101)">
+                <span bind="netImportExports">{{
+                  data.data[1].netImportExports
+                }}</span>
+                MW
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

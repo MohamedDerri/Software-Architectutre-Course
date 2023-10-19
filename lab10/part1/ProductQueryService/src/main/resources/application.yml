@@ -1,0 +1,14 @@
+server:
+  port: 8101
+spring:
+  application:
+    name: ProductCommandService
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: lab10
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
